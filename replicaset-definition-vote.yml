@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: vote-replicaset
+  labels:
+    app: voting-app
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: vote-pod
+      labels:
+        app: vote
+        type: front-end
+    spec:
+       containers:
+         - name: vote-app
+           image: prabhavagrawal/vote-app
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vote
